@@ -25,6 +25,8 @@ int main()
 	// This should get moved to the renderer
 	while (window->isOpen())
 	{
+		//handler.process_to_queue(); I shouldn't have to do this
+
 
 		const std::lock_guard<std::mutex> lock(handler.queue_mutex);
 		auto queue = handler.get_queue();
@@ -36,9 +38,9 @@ int main()
 
 			if (request->m_type == Request_Types::draw_square)
 			{
-				auto draw_squaure_request = dynamic_cast<Input_Request_Draw_Square&>(*request);
-				x = draw_squaure_request.m_x;
-				y = draw_squaure_request.m_y;
+				auto draw_square_request = dynamic_cast<Input_Request_Draw_Square&>(*request);
+				x = draw_square_request.m_x;
+				y = draw_square_request.m_y;
 			}
 		}
 
@@ -48,7 +50,6 @@ int main()
 		window->display();
 	}
 
-	thread.join();
 	return 0;
 }
 

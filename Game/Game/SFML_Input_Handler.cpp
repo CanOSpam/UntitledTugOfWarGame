@@ -11,36 +11,38 @@ void SFML_Input_Handler::process_to_queue()
 {
 	// This function should enqueue requests to a common format that the game understands
 	// Should also handle input specific to this input type (I.E. closing the window for SFML)
-	// Should be spun off on a thread 
+	// Should be spun off on a thread
 	// !!!REMEMBER TO MAKE QUEUE ACCESS THREAD SAFE!!!
-
-	sf::Event event;
-	while (input_source->pollEvent(event))
+	while (1)
 	{
-		// check the type of the event...
-		switch (event.type)
+		sf::Event event;
+		while (input_source->pollEvent(event))
 		{
-			// window closed
-		case sf::Event::Closed:
-			input_source->close();
-			break;
-
-			// key pressed
-		case sf::Event::KeyPressed:
-			break;
-
-			// key pressed
-		case sf::Event::MouseButtonPressed:
-			if (event.mouseButton.button == sf::Mouse::Left)
+			// check the type of the event...
+			switch (event.type)
 			{
-				const std::lock_guard<std::mutex> lock(queue_mutex);
-				get_queue()->push(std::make_unique<Input_Request_Draw_Square>(event.mouseButton.x, event.mouseButton.y));
-			}
-			break;
+				// window closed
+			case sf::Event::Closed:
+				input_source->close();
+				break;
 
-			// we don't process other types of events
-		default:
-			break;
+				// key pressed
+			case sf::Event::KeyPressed:
+				break;
+
+				// key pressed
+			case sf::Event::MouseButtonPressed:
+				if (event.mouseButton.button == sf::Mouse::Left)
+				{
+					const std::lock_guard<std::mutex> lock(queue_mutex);
+					get_queue()->push(std::make_unique<Input_Request_Draw_Square>(event.mouseButton.x, event.mouseButton.y));
+				}
+				break;
+
+				// we don't process other types of events
+			default:
+				break;
+			}
 		}
 	}
 }
