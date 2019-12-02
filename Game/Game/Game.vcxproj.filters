@@ -5,15 +5,34 @@
     <ClCompile Include="Precompiled.cpp">
       <Filter>Precompiled</Filter>
     </ClCompile>
+    <ClCompile Include="SFML_Input_Handler.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input_Handler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Precompiled">
       <UniqueIdentifier>{92f1c73a-c2ea-4322-afec-74c388668350}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{11b571bd-f2d6-4b62-a1c9-27135cab0e5e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Precompiled.h">
       <Filter>Precompiled</Filter>
+    </ClInclude>
+    <ClInclude Include="Input_Handler.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input_Request.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="SFML_Input_Handler.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Request_Types.h">
+      <Filter>Input</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
