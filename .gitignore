@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+
+# Directories specific to project
+.vs/
+_Build/
+
