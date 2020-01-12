@@ -9,6 +9,10 @@
       <Filter>Input</Filter>
     </ClCompile>
     <ClCompile Include="Input_Handler.cpp" />
+    <ClCompile Include="Unit.cpp" />
+    <ClCompile Include="SFML_Renderer.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Precompiled">
@@ -16,6 +20,18 @@
     </Filter>
     <Filter Include="Input">
       <UniqueIdentifier>{11b571bd-f2d6-4b62-a1c9-27135cab0e5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Data">
+      <UniqueIdentifier>{caa47125-eb2d-493a-bd48-6a6537bbbd76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Data\Units">
+      <UniqueIdentifier>{1859f1b4-2730-4579-a12a-942274aa5b35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game Data\Generic">
+      <UniqueIdentifier>{1cf09eee-9892-4ea1-9f70-fb38fea58770}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{ff9295c5-05a6-4869-9d38-bb03fb73d5ea}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -33,6 +49,13 @@
     </ClInclude>
     <ClInclude Include="Request_Types.h">
       <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Game_Data.h">
+      <Filter>Game Data\Generic</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h" />
+    <ClInclude Include="SFML_Renderer.h">
+      <Filter>Rendering</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

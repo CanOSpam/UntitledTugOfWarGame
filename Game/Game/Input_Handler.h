@@ -2,7 +2,6 @@
 
 #include <memory>
 #include <queue>
-#include <mutex>
 
 #include "Input_Request.h"
 
@@ -10,7 +9,6 @@ class Input_Handler
 {
 public:
 	// Variables
-	std::mutex queue_mutex;
 
 	//Functions
 	Input_Handler();

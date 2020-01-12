@@ -202,14 +202,19 @@ xcopy /y /d  "$(SolutionDir)Externals\SFML\$(PlatformShortName)\bin\sfml-window-
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SFML_Renderer.cpp" />
     <ClCompile Include="SFML_Input_Handler.cpp" />
+    <ClCompile Include="Unit.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game_Data.h" />
     <ClInclude Include="Input_Handler.h" />
     <ClInclude Include="Input_Request.h" />
     <ClInclude Include="Precompiled.h" />
+    <ClInclude Include="SFML_Renderer.h" />
     <ClInclude Include="Request_Types.h" />
     <ClInclude Include="SFML_Input_Handler.h" />
+    <ClInclude Include="Unit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
