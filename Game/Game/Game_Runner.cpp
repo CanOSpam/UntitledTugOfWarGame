@@ -79,7 +79,7 @@ void Game_Runner::_unit_tick(std::vector<Unit>::iterator& unit, std::shared_ptr<
 	}
 
 
-	if (unit->distance + enemy_leader.distance + unit->range >= Game_Data::GAME_SCREEN_WIDTH)
+	if (unit->distance + enemy_leader.distance + unit->range + (unit->size * 2) + (enemy_leader.size * 2) >= Game_Data::GAME_SCREEN_WIDTH - (Game_Data::BASE_BUFFER * 2))
 	{
 		unit->current_speed = 0;
 

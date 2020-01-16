@@ -34,8 +34,8 @@ private:
 	void _render_unit(Unit& unit);
 
 
-	void _render_square(sf::Color colour, float x, float y);
-	void _render_triangle(sf::Color colour, float x, float y);
-	void _render_circle(sf::Color colour, float x, float y);
+	void _render_triangle(sf::Color outline_colour, sf::Color fill_colour, float outline_thickness, float x, float y, float size);
+	void _render_circle(sf::Color outline_colour, sf::Color fill_colour, float outline_thickness, float x, float y, float size);
+	void _render_rectangle(sf::Color outline_colour, sf::Color fill_colour, float outline_thickness, float x, float y, float x_size, float y_size);
 };
 

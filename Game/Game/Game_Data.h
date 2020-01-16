@@ -3,6 +3,7 @@
 namespace Game_Data {
 	const unsigned int GAME_SCREEN_WIDTH = 1200;
 	const unsigned int GAME_SCREEN_HEIGHT = 600;
+	const unsigned int BASE_BUFFER = 20;
 
 	enum class Unit_Types
 	{

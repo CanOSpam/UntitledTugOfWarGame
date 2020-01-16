@@ -78,15 +78,15 @@ void SFML_Renderer::_render_unit(Unit& unit)
 
 	if (unit._type == Game_Data::Unit_Types::light)
 	{
-		_render_triangle(unit_colour, unit_x, unit_y);
+		_render_triangle(unit_colour, unit_colour, 1.0f, unit_x, unit_y, unit.size);
 	}
 	else if (unit._type == Game_Data::Unit_Types::medium)
 	{
-		_render_circle(unit_colour, unit_x, unit_y);
+		_render_circle(unit_colour, unit_colour, 1.0f, unit_x, unit_y, unit.size);
 	}
 	else if (unit._type == Game_Data::Unit_Types::heavy)
 	{
-		_render_square(unit_colour, unit_x, unit_y);
+		_render_rectangle(unit_colour, unit_colour, 1.0f, unit_x, unit_y, unit.size * 2, unit.size * 2);
 	}
 	else
 	{
@@ -94,37 +94,47 @@ void SFML_Renderer::_render_unit(Unit& unit)
 
 	}
 
+	// Health Bar
+	float double_unit_size = unit.size * 2;
+	float y_offset = double_unit_size + 5.0f;
+	float bar_x = unit_x - 10.f;
+	float bar_y = unit_y + y_offset;
+	float bar_x_size = double_unit_size * 2.0f;
+	float bar_y_size = 10.0f;
+	_render_rectangle(sf::Color::Blue, sf::Color::Red, 1.0f, bar_x, bar_y, bar_x_size, bar_y_size);
+	_render_rectangle(sf::Color::Transparent, sf::Color::Green, 1.0f, bar_x, bar_y, bar_x_size * (unit.health / unit.max_health), bar_y_size);
+
 }
 
-void SFML_Renderer::_render_square(sf::Color colour, float x, float y)
+void SFML_Renderer::_render_rectangle(sf::Color outline_colour, sf::Color fill_colour, float outline_thickness, float x, float y, float x_size, float y_size)
 {
-	sf::RectangleShape shape(sf::Vector2f(20.0f, 20.0f));
-	shape.setOutlineColor(colour);
+	sf::RectangleShape shape(sf::Vector2f(x_size, y_size));
+	shape.setOutlineColor(outline_colour);
 	shape.setOutlineThickness(1.0f);
 	shape.setPosition(sf::Vector2f(x, y));
-	shape.setFillColor(sf::Color::Black);
+	shape.setFillColor(fill_colour);
 
 	_SFML_window->draw(shape);
 }
 
-void SFML_Renderer::_render_circle(sf::Color colour, float x, float y)
+void SFML_Renderer::_render_circle(sf::Color outline_colour, sf::Color fill_colour, float outline_thickness, float x, float y, float size)
 {
-	sf::CircleShape shape(10.0f);
-	shape.setOutlineColor(colour);
+	sf::CircleShape shape(size);
+	shape.setOutlineColor(outline_colour);
 	shape.setOutlineThickness(1.0f);
 	shape.setPosition(sf::Vector2f(x, y));
-	shape.setFillColor(sf::Color::Black);
+	shape.setFillColor(fill_colour);
 
 	_SFML_window->draw(shape);
 }
 
-void SFML_Renderer::_render_triangle(sf::Color colour, float x, float y)
+void SFML_Renderer::_render_triangle(sf::Color outline_colour, sf::Color fill_colour, float outline_thickness, float x, float y, float size)
 {
-	sf::CircleShape shape(10.0f, 3);
-	shape.setOutlineColor(colour);
+	sf::CircleShape shape(size, 3);
+	shape.setOutlineColor(outline_colour);
 	shape.setOutlineThickness(1.0f);
 	shape.setPosition(sf::Vector2f(x, y));
-	shape.setFillColor(sf::Color::Black);
+	shape.setFillColor(fill_colour);
 
 	_SFML_window->draw(shape);
 }

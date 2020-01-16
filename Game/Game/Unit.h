@@ -10,7 +10,8 @@ public:
 	bool operator<(const Unit& other_unit);
 	
 	//Variables
-	int health;
+	float health;
+	float max_health;
 	int damage;
 	int armour;
 	float current_speed;
@@ -18,6 +19,7 @@ public:
 	float distance;
 	bool is_attacking;
 	float range;
+	float size;
 
 	Game_Data::Unit_Types _type;
 	Game_Data::Board_Side _side;
