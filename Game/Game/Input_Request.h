@@ -1,49 +1,35 @@
 #pragma once
+
+// Untitled Tug Of War Game
 #include "Request_Types.h"
 #include "Game_Data.h"
 
 class Input_Request
 {
 public:
-	Input_Request(Request_Types type)
-		: m_request_type(type)
+	Input_Request(Game_Events::Request_Types type)
+		: _request_type(type)
 	{}
 
 	virtual ~Input_Request() {}; // Force class to be recognized as polymorphic
 
-	Request_Types m_request_type;
-};
-
-class Input_Request_Draw_Square : public Input_Request
-{
-public:
-	Input_Request_Draw_Square(float x, float y)
-		: m_x(x)
-		, m_y(y)
-		, Input_Request(Request_Types::draw_square)
-	{}
-
-	virtual ~Input_Request_Draw_Square() override {}; // Force class to be recognized as polymorphic
-
-
-	float m_x;
-	float m_y;
+	Game_Events::Request_Types _request_type;
 };
 
 class Input_Request_Summon_Unit : public Input_Request
 {
 public:
-	Input_Request_Summon_Unit(Board_Side side, Unit_Types unit_type, Board_Lane lane)
-		: m_side(side)
-		, m_unit_type(unit_type)
-		, m_lane(lane)
-		, Input_Request(Request_Types::summon_unit)
+	Input_Request_Summon_Unit(Game_Data::Board_Side side, Game_Data::Unit_Types unit_type, Game_Data::Board_Lane lane)
+		: _side(side)
+		, _unit_type(unit_type)
+		, _lane(lane)
+		, Input_Request(Game_Events::Request_Types::summon_unit)
 	{}
 
 	virtual ~Input_Request_Summon_Unit() override {}; // Force class to be recognized as polymorphic
 
-	Board_Side m_side;
-	Board_Lane m_lane;
-	Unit_Types m_unit_type;
+	Game_Data::Board_Side _side;
+	Game_Data::Board_Lane _lane;
+	Game_Data::Unit_Types _unit_type;
 
 };

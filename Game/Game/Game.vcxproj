@@ -194,6 +194,7 @@ xcopy /y /d  "$(SolutionDir)Externals\SFML\$(PlatformShortName)\bin\sfml-window-
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game_Runner.cpp" />
     <ClCompile Include="Input_Handler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Precompiled.cpp">
@@ -208,6 +209,7 @@ xcopy /y /d  "$(SolutionDir)Externals\SFML\$(PlatformShortName)\bin\sfml-window-
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game_Data.h" />
+    <ClInclude Include="Game_Runner.h" />
     <ClInclude Include="Input_Handler.h" />
     <ClInclude Include="Input_Request.h" />
     <ClInclude Include="Precompiled.h" />

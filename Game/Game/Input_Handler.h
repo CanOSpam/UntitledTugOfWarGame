@@ -1,8 +1,10 @@
 #pragma once
 
+// STDLIB
 #include <memory>
 #include <queue>
 
+// Untitled Tug Of War Game
 #include "Input_Request.h"
 
 class Input_Handler
@@ -17,7 +19,7 @@ public:
 
 private:
 	// Variables
-	std::shared_ptr<std::queue<std::unique_ptr<Input_Request>>> request_queue; // !!!REMEMBER TO MAKE QUEUE ACCESS THREAD SAFE!!!
+	std::shared_ptr<std::queue<std::unique_ptr<Input_Request>>> request_queue;
 
 	// Functions
 	

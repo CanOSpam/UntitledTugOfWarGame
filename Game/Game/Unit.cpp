@@ -1,34 +1,65 @@
+// Untitled Tug Of War Game
 #include "Precompiled.h"
 #include "Unit.h"
 
 
-Unit::Unit(Unit_Types type, Board_Side side, Board_Lane lane)
-	: m_type(type)
-	, m_side(side)
-	, m_lane(lane)
+Unit::Unit(Game_Data::Unit_Types type, Game_Data::Board_Side side, Game_Data::Board_Lane lane)
+	: _type(type)
+	, _side(side)
+	, _lane(lane)
+	, distance(0)
+	, is_attacking(false)
 {
-	if (type == Unit_Types::light)
+	_initialize();
+}
+
+// Allows sorting by distance
+// Only works for units on the same side
+bool Unit::operator<(const Unit & other_unit)
+{
+	if (_side == other_unit._side)
 	{
-		m_strong_against = Unit_Types::heavy;
-	    health = 10;
+		return distance < other_unit.distance;
+	}
+	else
+	{
+		throw "Can't compare units from different sides";
+	}
+}
+
+void Unit::_initialize()
+{
+	if (_type == Game_Data::Unit_Types::light)
+	{
+		health = 100;
 		damage = 10;
 		armour = 10;
-		speed = 50.0f;
+		range = 3.0f;
+		base_speed = 2.0f;
+		current_speed = base_speed;
+
+		_strong_against = Game_Data::Unit_Types::heavy;
 	}
-	else if (type == Unit_Types::medium)
+	else if (_type == Game_Data::Unit_Types::medium)
 	{
-		m_strong_against = Unit_Types::light;
-		health = 20;
+		health = 200;
 		damage = 20;
 		armour = 20;
-		speed = 25.0f;
+		range = 3.0f;
+		base_speed = 1.0f;
+		current_speed = base_speed;
+
+		_strong_against = Game_Data::Unit_Types::light;
 	}
-	else if (type == Unit_Types::heavy)
+	else if (_type == Game_Data::Unit_Types::heavy)
 	{
-		m_strong_against = Unit_Types::medium;
-		health = 30;
+		health = 300;
 		damage = 30;
 		armour = 30;
-		speed = 5.0f;
+		range = 3.0f;
+		base_speed = 0.5f;
+		current_speed = base_speed;
+
+		_strong_against = Game_Data::Unit_Types::medium;
 	}
 }

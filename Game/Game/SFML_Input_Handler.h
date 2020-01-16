@@ -1,5 +1,8 @@
 #pragma once
+// Untitled Tug Of War Game
 #include "Input_Handler.h"
+
+// SFML
 #include "SFML/Window/Window.hpp"
 
 class SFML_Input_Handler : public Input_Handler
@@ -15,8 +18,8 @@ public:
 private:
 	// Variables
 	std::shared_ptr<sf::Window> input_source;
-	Board_Lane player1_lane = Board_Lane::top;
-	Board_Lane player2_lane = Board_Lane::top;
+	Game_Data::Board_Lane player1_lane = Game_Data::Board_Lane::top;
+	Game_Data::Board_Lane player2_lane = Game_Data::Board_Lane::top;
 
 	// Functions
 	

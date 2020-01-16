@@ -1,10 +1,11 @@
 #pragma once
 
-enum class Request_Types
-{
-	summon_unit,
-	draw_square, // For testing
+namespace Game_Events {
+	enum class Request_Types
+	{
+		summon_unit,
 
-	_count
+		_count
 
+	};
 };

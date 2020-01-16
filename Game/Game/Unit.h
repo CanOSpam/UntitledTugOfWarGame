@@ -1,21 +1,31 @@
 #pragma once
+// Untitled Tug Of War Game
 #include "Game_Data.h"
 
 class Unit
 {
 public:
-	Unit(Unit_Types type, Board_Side side, Board_Lane lane);
-
-	// Move this to an external definition format, JSON?
+	// Functions
+	Unit(Game_Data::Unit_Types type, Game_Data::Board_Side side, Game_Data::Board_Lane lane);
+	bool operator<(const Unit& other_unit);
+	
+	//Variables
 	int health;
 	int damage;
 	int armour;
-	float speed;
+	float current_speed;
+	float base_speed;
+	float distance;
+	bool is_attacking;
+	float range;
 
-	Unit_Types m_type;
-	Board_Side m_side;
-	Board_Lane m_lane;
+	Game_Data::Unit_Types _type;
+	Game_Data::Board_Side _side;
+	Game_Data::Board_Lane _lane;
 
-	Unit_Types m_strong_against;
+	Game_Data::Unit_Types _strong_against;
+
+private:
+	void _initialize();
 };
 

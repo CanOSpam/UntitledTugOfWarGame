@@ -13,6 +13,7 @@
     <ClCompile Include="SFML_Renderer.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Game_Runner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Precompiled">
@@ -32,6 +33,9 @@
     </Filter>
     <Filter Include="Rendering">
       <UniqueIdentifier>{ff9295c5-05a6-4869-9d38-bb03fb73d5ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{981fbebf-e077-45aa-85fb-50eaf8560a77}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -57,5 +61,6 @@
     <ClInclude Include="SFML_Renderer.h">
       <Filter>Rendering</Filter>
     </ClInclude>
+    <ClInclude Include="Game_Runner.h" />
   </ItemGroup>
 </Project>
