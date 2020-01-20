@@ -27,6 +27,25 @@ bool Unit::operator<(const Unit & other_unit)
 	}
 }
 
+void Unit::deal_damage(Unit & other_unit)
+{
+	int damage_dealt = damage - other_unit.armour;
+
+	// Minimum 1 damage if negated by armor
+	if (damage_dealt < 1)
+	{
+		damage_dealt = 1;
+	}
+
+	// Double damage if strong against the other type
+	if (_strong_against == other_unit._type)
+	{
+		damage_dealt *= 2;
+	}
+
+	other_unit.health -= damage_dealt;
+}
+
 void Unit::_initialize()
 {
 	if (_type == Game_Data::Unit_Types::light)
@@ -37,8 +56,9 @@ void Unit::_initialize()
 		armour = 10;
 		range = 3.0f;
 		base_speed = 2.0f;
-		size = 10.0f;
 		current_speed = base_speed;
+		size = 10.0f;
+		cost = 10;
 
 		_strong_against = Game_Data::Unit_Types::heavy;
 	}
@@ -50,8 +70,9 @@ void Unit::_initialize()
 		armour = 20;
 		range = 3.0f;
 		base_speed = 1.0f;
-		size = 10.0f;
 		current_speed = base_speed;
+		size = 10.0f;
+		cost = 20;
 
 		_strong_against = Game_Data::Unit_Types::light;
 	}
@@ -63,9 +84,30 @@ void Unit::_initialize()
 		armour = 30;
 		range = 3.0f;
 		base_speed = 0.5f;
-		size = 10.0f;
 		current_speed = base_speed;
+		size = 10.0f;
+		cost = 30;
 
 		_strong_against = Game_Data::Unit_Types::medium;
+	}
+	else if (_type == Game_Data::Unit_Types::base)
+	{
+		// Only base starts at 0
+		distance = 0;
+
+		max_health = 5000;
+		health = max_health;
+		damage = 0;
+		armour = 0;
+		range = 0.0f;
+		base_speed = 0.0f;
+		current_speed = base_speed;
+		size = 50.0f;
+
+		_strong_against = Game_Data::Unit_Types::none;
+	}
+	else
+	{
+		throw "That unit type doesn't exist!";
 	}
 }

@@ -197,6 +197,7 @@ xcopy /y /d  "$(SolutionDir)Externals\SFML\$(PlatformShortName)\bin\sfml-window-
     <ClCompile Include="Game_Runner.cpp" />
     <ClCompile Include="Input_Handler.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Precompiled.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -212,6 +213,7 @@ xcopy /y /d  "$(SolutionDir)Externals\SFML\$(PlatformShortName)\bin\sfml-window-
     <ClInclude Include="Game_Runner.h" />
     <ClInclude Include="Input_Handler.h" />
     <ClInclude Include="Input_Request.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Precompiled.h" />
     <ClInclude Include="SFML_Renderer.h" />
     <ClInclude Include="Request_Types.h" />

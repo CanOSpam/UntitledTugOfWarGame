@@ -8,12 +8,19 @@
     <ClCompile Include="SFML_Input_Handler.cpp">
       <Filter>Input</Filter>
     </ClCompile>
-    <ClCompile Include="Input_Handler.cpp" />
-    <ClCompile Include="Unit.cpp" />
     <ClCompile Include="SFML_Renderer.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Game_Runner.cpp" />
+    <ClCompile Include="Game_Runner.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Input_Handler.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Unit.cpp">
+      <Filter>Game Data\Units</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Precompiled">
@@ -57,10 +64,15 @@
     <ClInclude Include="Game_Data.h">
       <Filter>Game Data\Generic</Filter>
     </ClInclude>
-    <ClInclude Include="Unit.h" />
     <ClInclude Include="SFML_Renderer.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Game_Runner.h" />
+    <ClInclude Include="Game_Runner.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Unit.h">
+      <Filter>Game Data\Units</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h" />
   </ItemGroup>
 </Project>

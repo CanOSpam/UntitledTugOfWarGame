@@ -8,6 +8,8 @@ public:
 	// Functions
 	Unit(Game_Data::Unit_Types type, Game_Data::Board_Side side, Game_Data::Board_Lane lane);
 	bool operator<(const Unit& other_unit);
+
+	void deal_damage(Unit& other_unit);
 	
 	//Variables
 	float health;
@@ -20,6 +22,7 @@ public:
 	bool is_attacking;
 	float range;
 	float size;
+	int cost;
 
 	Game_Data::Unit_Types _type;
 	Game_Data::Board_Side _side;
