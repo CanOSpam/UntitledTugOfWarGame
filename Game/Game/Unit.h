@@ -14,15 +14,17 @@ public:
 	//Variables
 	float health;
 	float max_health;
-	int damage;
-	int armour;
+	unsigned int damage;
+	unsigned int armour;
 	float current_speed;
 	float base_speed;
 	float distance;
 	bool is_attacking;
 	float range;
 	float size;
-	int cost;
+	unsigned int cost;
+	unsigned int strength_multiplier;
+	std::string sprite_path;
 
 	Game_Data::Unit_Types _type;
 	Game_Data::Board_Side _side;

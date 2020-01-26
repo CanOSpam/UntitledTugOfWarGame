@@ -8,6 +8,7 @@ public:
 	bool buy(int cost);
 
 	const int get_money();
+	void increase_income(int income_increase);
 
 private:
 	// Variables

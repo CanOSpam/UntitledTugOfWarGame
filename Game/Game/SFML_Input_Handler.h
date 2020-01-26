@@ -21,6 +21,9 @@ private:
 	Game_Data::Board_Lane player1_lane = Game_Data::Board_Lane::top;
 	Game_Data::Board_Lane player2_lane = Game_Data::Board_Lane::top;
 
+	const Game_Data::Board_Side player1_side = Game_Data::Board_Side::left;
+	const Game_Data::Board_Side player2_side = Game_Data::Board_Side::right;
+
 	// Functions
 	
 

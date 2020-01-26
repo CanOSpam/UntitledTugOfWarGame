@@ -13,7 +13,7 @@ void Player::tick()
 
 bool Player::buy(int cost)
 {
-	if (cost < money)
+	if (cost <= money)
 	{
 		money -= cost;
 		return true;
@@ -27,4 +27,9 @@ bool Player::buy(int cost)
 const int Player::get_money()
 {
 	return money;
+}
+
+void Player::increase_income(int income_increase)
+{
+	income += income_increase;
 }

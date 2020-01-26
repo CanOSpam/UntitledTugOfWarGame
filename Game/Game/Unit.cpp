@@ -40,7 +40,7 @@ void Unit::deal_damage(Unit & other_unit)
 	// Double damage if strong against the other type
 	if (_strong_against == other_unit._type)
 	{
-		damage_dealt *= 2;
+		damage_dealt *= strength_multiplier;
 	}
 
 	other_unit.health -= damage_dealt;
@@ -59,6 +59,8 @@ void Unit::_initialize()
 		current_speed = base_speed;
 		size = 10.0f;
 		cost = 10;
+		strength_multiplier = 2;
+		sprite_path = "images/light_unit.png";
 
 		_strong_against = Game_Data::Unit_Types::heavy;
 	}
@@ -73,6 +75,8 @@ void Unit::_initialize()
 		current_speed = base_speed;
 		size = 10.0f;
 		cost = 20;
+		strength_multiplier = 2;
+		sprite_path = "images/medium_unit.png";
 
 		_strong_against = Game_Data::Unit_Types::light;
 	}
@@ -87,8 +91,26 @@ void Unit::_initialize()
 		current_speed = base_speed;
 		size = 10.0f;
 		cost = 30;
+		strength_multiplier = 2;
+		sprite_path = "images/heavy_unit.png";
 
 		_strong_against = Game_Data::Unit_Types::medium;
+	}
+	else if (_type == Game_Data::Unit_Types::siege)
+	{
+		max_health = 100;
+		health = max_health;
+		damage = 1;
+		armour = 0;
+		range = 3.0f;
+		base_speed = 1.0f;
+		current_speed = base_speed;
+		size = 10.0f;
+		cost = 20;
+		strength_multiplier = 100;
+		sprite_path = "images/siege_unit.png";
+
+		_strong_against = Game_Data::Unit_Types::base;
 	}
 	else if (_type == Game_Data::Unit_Types::base)
 	{
@@ -103,6 +125,7 @@ void Unit::_initialize()
 		base_speed = 0.0f;
 		current_speed = base_speed;
 		size = 50.0f;
+		strength_multiplier = 0;
 
 		_strong_against = Game_Data::Unit_Types::none;
 	}

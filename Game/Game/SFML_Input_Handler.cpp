@@ -47,30 +47,55 @@ void SFML_Input_Handler::process_to_queue()
 				player2_lane = Game_Data::Board_Lane::bottom;
 				// UI event to register?
 			}
+
+
 			if (event.key.code == sf::Keyboard::Z)
 			{
-
-				get_queue()->push(std::make_unique<Input_Request_Summon_Unit>(Game_Data::Board_Side::left, Game_Data::Unit_Types::light, player1_lane));
+				get_queue()->push(std::make_unique<Input_Request_Summon_Unit>(player1_side, Game_Data::Unit_Types::light, player1_lane));
 			}
 			if (event.key.code == sf::Keyboard::X)
 			{
-				get_queue()->push(std::make_unique<Input_Request_Summon_Unit>(Game_Data::Board_Side::left, Game_Data::Unit_Types::medium, player1_lane));
+				get_queue()->push(std::make_unique<Input_Request_Summon_Unit>(player1_side, Game_Data::Unit_Types::medium, player1_lane));
 			}
 			if (event.key.code == sf::Keyboard::C)
 			{
-				get_queue()->push(std::make_unique<Input_Request_Summon_Unit>(Game_Data::Board_Side::left, Game_Data::Unit_Types::heavy, player1_lane));
+				get_queue()->push(std::make_unique<Input_Request_Summon_Unit>(player1_side, Game_Data::Unit_Types::heavy, player1_lane));
+			}
+			if (event.key.code == sf::Keyboard::V)
+			{
+				get_queue()->push(std::make_unique<Input_Request_Summon_Unit>(player1_side, Game_Data::Unit_Types::siege, player1_lane));
+			}
+			if (event.key.code == sf::Keyboard::LShift)
+			{
+				get_queue()->push(std::make_unique<Input_Request_Add_Upgrade>(player1_side, Game_Data::Upgrade_Types::income));
+			}
+
+
+			if (event.key.code == sf::Keyboard::M)
+			{
+				get_queue()->push(std::make_unique<Input_Request_Summon_Unit>(player2_side, Game_Data::Unit_Types::light, player2_lane));
 			}
 			if (event.key.code == sf::Keyboard::Comma)
 			{
-				get_queue()->push(std::make_unique<Input_Request_Summon_Unit>(Game_Data::Board_Side::right, Game_Data::Unit_Types::light, player2_lane));
+				get_queue()->push(std::make_unique<Input_Request_Summon_Unit>(player2_side, Game_Data::Unit_Types::medium, player2_lane));
 			}
 			if (event.key.code == sf::Keyboard::Period)
 			{
-				get_queue()->push(std::make_unique<Input_Request_Summon_Unit>(Game_Data::Board_Side::right, Game_Data::Unit_Types::medium, player2_lane));
+				get_queue()->push(std::make_unique<Input_Request_Summon_Unit>(player2_side, Game_Data::Unit_Types::heavy, player2_lane));
 			}
 			if (event.key.code == sf::Keyboard::Slash)
 			{
-				get_queue()->push(std::make_unique<Input_Request_Summon_Unit>(Game_Data::Board_Side::right, Game_Data::Unit_Types::heavy, player2_lane));
+				get_queue()->push(std::make_unique<Input_Request_Summon_Unit>(player2_side, Game_Data::Unit_Types::siege, player2_lane));
+			}
+			if (event.key.code == sf::Keyboard::RShift)
+			{
+				get_queue()->push(std::make_unique<Input_Request_Add_Upgrade>(player2_side, Game_Data::Upgrade_Types::income));
+			}
+
+
+			if (event.key.code == sf::Keyboard::Space)
+			{
+				get_queue()->push(std::make_unique<Input_Request_Toggle_Pause>());
 			}
 			break;
 

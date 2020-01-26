@@ -7,6 +7,7 @@
 
 Game_Runner::Game_Runner(std::shared_ptr<SFML_Input_Handler> input_handler)
 	: _input_handler(std::move(input_handler))
+	, tick_count(0)
 {
 	_left_units = std::make_shared<std::vector<Unit>>();
 	_right_units = std::make_shared<std::vector<Unit>>();
@@ -17,6 +18,12 @@ Game_Runner::Game_Runner(std::shared_ptr<SFML_Input_Handler> input_handler)
 	_left_player = std::make_shared<Player>();
 	_right_player = std::make_shared<Player>();
 
+	last_tick = std::chrono::high_resolution_clock::now();
+
+	_game_states = std::make_shared<std::unordered_map<Game_Data::Game_States, bool>>();
+	(*_game_states)[Game_Data::Game_States::paused] = true;
+	(*_game_states)[Game_Data::Game_States::game_over] = false;
+
 	for (Game_Data::Unit_Types type : Game_Data::unit_types_iterable)
 	{
 		_example_units[type] = std::make_unique<Unit>(type, Game_Data::Board_Side::none, Game_Data::Board_Lane::none);
@@ -25,7 +32,9 @@ Game_Runner::Game_Runner(std::shared_ptr<SFML_Input_Handler> input_handler)
 
 void Game_Runner::tick()
 {
-	if (std::chrono::high_resolution_clock::now() - last_tick < std::chrono::milliseconds(16))
+	if (std::chrono::high_resolution_clock::now() - last_tick < std::chrono::milliseconds(16)
+		|| (*_game_states)[Game_Data::Game_States::paused]
+		|| (*_game_states)[Game_Data::Game_States::game_over])
 	{
 		return;
 	}
@@ -65,16 +74,19 @@ void Game_Runner::tick()
 	_clean_dead(_left_units);
 	_clean_dead(_right_units);
 
-	_left_player->tick();
-	_right_player->tick();
+	if (tick_count % 20 == 0)
+	{
+		_left_player->tick();
+		_right_player->tick();
+	}
 
 	//TODO: Check for game end and send event if detected
 	if (_left_base->health <= 0 || _right_base->health <= 0)
 	{
-		exit(0);
+		(*_game_states)[Game_Data::Game_States::game_over] = true;
 	}
 
-
+	++tick_count;
 	last_tick = std::chrono::high_resolution_clock::now();
 }
 
@@ -97,6 +109,36 @@ void Game_Runner::summon_unit(Game_Data::Unit_Types type, Game_Data::Board_Side 
 	else
 	{
 		throw "Something went wrong with the sidedness of this unit";
+	}
+}
+
+void Game_Runner::toggle_pause()
+{
+	(*_game_states)[Game_Data::Game_States::paused] = !(*_game_states)[Game_Data::Game_States::paused];
+}
+
+void Game_Runner::add_upgrade(Game_Data::Upgrade_Types type, Game_Data::Board_Side side)
+{
+	if (type == Game_Data::Upgrade_Types::income)
+	{
+		if (side == Game_Data::Board_Side::left)
+		{
+			if (_left_player->buy(100))
+			{
+				_left_player->increase_income(1);
+			}
+		}
+		else if (side == Game_Data::Board_Side::right)
+		{
+			if (_right_player->buy(100))
+			{
+				_right_player->increase_income(1);
+			}
+		}
+		else
+		{
+			throw "Something went wrong with the sidedness of this unit";
+		}
 	}
 }
 
@@ -128,6 +170,11 @@ std::shared_ptr<Player> Game_Runner::get_left_player()
 std::shared_ptr<Player> Game_Runner::get_right_player()
 {
 	return _right_player;
+}
+
+std::shared_ptr<std::unordered_map<Game_Data::Game_States, bool>> Game_Runner::get_game_states()
+{
+	return _game_states;
 }
 
 void Game_Runner::_unit_tick(std::vector<Unit>::iterator& unit, std::shared_ptr<std::vector<Unit>> units, Unit& enemy_leader)

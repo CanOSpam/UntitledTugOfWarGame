@@ -21,6 +21,7 @@
       <Filter>Game Data\Units</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Precompiled">
@@ -74,5 +75,6 @@
       <Filter>Game Data\Units</Filter>
     </ClInclude>
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Game.h" />
   </ItemGroup>
 </Project>

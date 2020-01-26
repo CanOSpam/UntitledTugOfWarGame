@@ -28,10 +28,14 @@ public:
 	std::shared_ptr<Player> get_left_player();
 	std::shared_ptr<Player> get_right_player();
 
+	std::shared_ptr<std::unordered_map<Game_Data::Game_States, bool>> get_game_states();
+
 	Game_Runner(std::shared_ptr<SFML_Input_Handler> input_handler);
 
 	void tick();
 	void summon_unit(Game_Data::Unit_Types type, Game_Data::Board_Side side, Game_Data::Board_Lane lane);
+	void toggle_pause();
+	void add_upgrade(Game_Data::Upgrade_Types type, Game_Data::Board_Side side);
 
 private:
 	// Variables
@@ -48,7 +52,11 @@ private:
 
 	std::shared_ptr<SFML_Input_Handler> _input_handler;
 
-	std::chrono::steady_clock::time_point last_tick = std::chrono::high_resolution_clock::now();
+	std::chrono::steady_clock::time_point last_tick;
+
+	std::shared_ptr<std::unordered_map<Game_Data::Game_States, bool>> _game_states;
+
+	unsigned long long tick_count;
 
 	// Functions
 	void _unit_tick(std::vector<Unit>::iterator& unit, std::shared_ptr<std::vector<Unit>> units, Unit& enemy_leader);
