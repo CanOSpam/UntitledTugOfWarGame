@@ -1,6 +1,5 @@
 # UntitledTugOfWarGame
 
-This is for the Skybox CPP levelup.
+A simple local two player tug of war RTS.
 
-The intention is to create a two player vs. tug of war RTS that takes place on one screen and one keyboard. While
-also allowing the possibility of future extension to AI opponents and even networked gameplay.
+Full credit: Placeholder art is from the Root board game.
