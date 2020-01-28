@@ -12,7 +12,17 @@ SFML_Renderer::SFML_Renderer(Render_Data render_data)
 		throw "Failed to load font";
 	}
 	_text.setFont(_font);
+	_text.setOutlineColor(sf::Color(0, 0, 0, 255));
+	_text.setOutlineThickness(2);
 
+	if (!_background_texture.loadFromFile("images/background.png"))
+	{
+		throw "Failed to load unit card image";
+	}
+
+	_background_texture.setSmooth(true);
+	_background_sprite.setTexture(_background_texture);
+	_background_sprite.scale(2.0f, 2.0f);
 
 	for (Game_Data::Unit_Types type : Game_Data::unit_types_iterable)
 	{
@@ -38,6 +48,7 @@ void SFML_Renderer::render()
 
 void SFML_Renderer::_render_background()
 {
+	_render_data.window->draw(_background_sprite);
 	_render_unit_cards(Game_Data::GAME_SCREEN_WIDTH / 2.0f - (_units_cards[0].card_sprite.getGlobalBounds().width * Game_Data::unit_types_iterable.size()) / 2.0f, Game_Data::GAME_SCREEN_HEIGHT - _units_cards[0].card_sprite.getGlobalBounds().height);
 }
 

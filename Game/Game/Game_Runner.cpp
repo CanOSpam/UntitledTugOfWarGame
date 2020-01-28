@@ -71,8 +71,11 @@ void Game_Runner::tick()
 		}
 	}
 
-	_clean_dead(_left_units);
-	_clean_dead(_right_units);
+	if (tick_count % 2 == 0)
+	{
+		_clean_dead(_left_units);
+		_clean_dead(_right_units);
+	}
 
 	if (tick_count % 20 == 0)
 	{
@@ -123,14 +126,14 @@ void Game_Runner::add_upgrade(Game_Data::Upgrade_Types type, Game_Data::Board_Si
 	{
 		if (side == Game_Data::Board_Side::left)
 		{
-			if (_left_player->buy(100))
+			if (_left_player->buy(50))
 			{
 				_left_player->increase_income(1);
 			}
 		}
 		else if (side == Game_Data::Board_Side::right)
 		{
-			if (_right_player->buy(100))
+			if (_right_player->buy(50))
 			{
 				_right_player->increase_income(1);
 			}

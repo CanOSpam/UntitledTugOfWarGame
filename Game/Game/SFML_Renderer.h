@@ -106,6 +106,9 @@ private:
 	sf::Font _font;
 	sf::Text _text;
 
+	sf::Texture _background_texture;
+	sf::Sprite _background_sprite;
+
 	std::unordered_map<Game_Data::Unit_Types, std::unique_ptr<Unit_Render_Data>> _example_units;
 	std::vector<Unit_Card> _units_cards;
 

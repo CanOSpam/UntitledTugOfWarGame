@@ -5,7 +5,7 @@ public:
 	// Functions
 	Player();
 	void tick();
-	bool buy(int cost);
+	bool buy(unsigned int cost);
 
 	const int get_money();
 	void increase_income(int income_increase);

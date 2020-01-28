@@ -11,7 +11,7 @@ void Player::tick()
 	money += income;
 }
 
-bool Player::buy(int cost)
+bool Player::buy(unsigned int cost)
 {
 	if (cost <= money)
 	{
